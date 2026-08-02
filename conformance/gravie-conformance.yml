@@ -1,0 +1,116 @@
+generated: '2026-08-01'
+method: searched
+source: https://www.gravie.com/compliance/
+summary: >-
+  Gravie's conformance posture is regulatory, not API-technical. As a health-benefits administrator it meets
+  the US federal price-transparency, surprise-billing and health-privacy regimes and holds a SOC 2 Type 1
+  attestation, and it exchanges claims over X12 EDI through a clearinghouse. It publishes no OpenAPI,
+  AsyncAPI, GraphQL, MCP or A2A surface, no OAuth/OIDC discovery document and no RFC 9116 security.txt —
+  every one of those was probed live on 2026-08-01 and missed.
+standards:
+- id: cms-transparency-in-coverage
+  name: Transparency in Coverage (45 CFR 147.211)
+  conforms: true
+  evidence: >-
+    Machine-readable in-network rate and allowed-amount files published on behalf of plan sponsors at
+    static.gravie.com/MRFs/ (Cigna, Cigna OAP, HPS/Paymedix JSON/ZIP; Zelis out-of-network CSV), indexed at
+    https://www.gravie.com/compliance/transparency-in-coverage/ — all four file URLs verified HTTP 200.
+  url: https://www.gravie.com/compliance/transparency-in-coverage/
+- id: no-surprises-act
+  name: No Surprises Act (Consolidated Appropriations Act, 2021)
+  conforms: true
+  evidence: Gravie publishes the required "Your Rights and Protections Against Surprise Medical Bills" notice.
+  url: https://www.gravie.com/compliance/your-rights-and-protections-against-surprise-medical-bills/
+- id: hipaa
+  name: Health Insurance Portability and Accountability Act
+  conforms: true
+  evidence: >-
+    Privacy policy states "Gravie is regulated by the Health Insurance Portability and Accountability Act and
+    its implementing regulations" and commits to HIPAA handling of personal information.
+  url: https://www.gravie.com/compliance/privacy-policy/
+- id: aca-1312e
+  name: Affordable Care Act Section 1312(e) / 45 CFR 155.260
+  conforms: true
+  evidence: Privacy policy cites 45 C.F.R. 155.260 and ACA Section 1312(e) as governing its privacy practices.
+  url: https://www.gravie.com/compliance/privacy-policy/
+- id: soc2-type1
+  name: AICPA SOC 2 Type 1
+  conforms: true
+  attested: '2022'
+  auditor: 360 Advanced, Inc.
+  evidence: >-
+    "Gravie Successfully Completes SOC 2 Type 1 Report" press release published on Gravie's own site; no SOC 2
+    Type 2 report, ISO 27001, HITRUST or PCI DSS attestation is published.
+  url: https://www.gravie.com/perspectives/press-release-gravie-successfully-completes-soc-2-type-1-report/
+- id: ccpa-cpra
+  name: California Consumer Privacy Act / California Privacy Rights Act
+  conforms: true
+  evidence: Dedicated CCPA/CPRA notice plus a California personnel privacy addendum; privacy policy cites California Civil Code Sec. 1789.3.
+  url: https://www.gravie.com/ccpa-notice/
+- id: x12-edi-837
+  name: ASC X12N 837 electronic claims
+  conforms: true
+  evidence: >-
+    Providers submit claims electronically under Gravie payer IDs GRV01 (Aetna Signature Administrators plans)
+    and 62308 (Cigna plans); Aetna Signature Administrators claims route through the Smart Data Stream
+    clearinghouse portal.
+  url: https://www.gravie.com/providers/claims/
+- id: language-access
+  name: Language access / taglines
+  conforms: true
+  evidence: >-
+    Language resources page publishes multilingual notices and an over-the-phone translation service in more
+    than 150 languages; no explicit Section 1557 / 45 CFR 92.101 citation is given on the page.
+  url: https://www.gravie.com/compliance/language-resources/
+- id: openapi
+  name: OpenAPI
+  conforms: false
+  evidence: >-
+    Probed /openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs, /docs and /redoc on
+    api.gravie.com (all 403), www.gravie.com and static.gravie.com (all 404) on 2026-08-01. No developer
+    portal or API reference exists on any Gravie property.
+- id: graphql
+  name: GraphQL
+  conforms: false
+  evidence: /graphql returned 403 on api.gravie.com and 404 on www.gravie.com; no GraphQL surface advertised.
+- id: asyncapi
+  name: AsyncAPI
+  conforms: false
+  evidence: No event, streaming or webhook surface is documented on any Gravie property.
+- id: mcp
+  name: Model Context Protocol
+  conforms: false
+  evidence: No hosted MCP server advertised; no MCP endpoint discoverable on any Gravie host.
+- id: a2a-agent-card
+  name: A2A Agent Card
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json probed on www.gravie.com, api.gravie.com,
+    static.gravie.com, member.gravie.com and employer.gravie.com. Only the two portal SPAs answered 200, with
+    the HTML application shell for every path — rejected as catch-all false positives. No agent card exists.
+- id: rfc9116-security-txt
+  name: RFC 9116 security.txt
+  conforms: false
+  evidence: >-
+    /.well-known/security.txt missing on all five hosts. A HackerOne domain-verification TXT record
+    (h1-domain-verification=...) is present on gravie.com, but hackerone.com/gravie returns 404, so any
+    program is private and there is no public disclosure policy to record.
+- id: oauth2-oidc-discovery
+  name: OAuth 2.0 / OpenID Connect discovery
+  conforms: false
+  evidence: /.well-known/openid-configuration, /oauth-authorization-server and /oauth-protected-resource missing or gated on all hosts.
+- id: dnssec
+  name: DNSSEC
+  conforms: false
+  evidence: security/gravie-domain-security.yml — no DNSKEY on gravie.com.
+- id: dmarc
+  name: DMARC
+  conforms: true
+  evidence: security/gravie-domain-security.yml — DMARC published with policy p=reject; SPF present; CAA records restrict issuance to six CAs.
+x-evidence:
+  fetched: '2026-08-01'
+  pages:
+  - https://www.gravie.com/compliance/
+  - https://www.gravie.com/compliance/transparency-in-coverage/
+  - https://www.gravie.com/compliance/privacy-policy/
+  - https://www.gravie.com/providers/claims/

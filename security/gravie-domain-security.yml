@@ -1,0 +1,28 @@
+generated: '2026-08-01'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.gravie.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 18 04:18:31 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: static.gravie.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Mar  1 23:59:59 2027 GMT
+  hsts: null
+domains:
+- domain: gravie.com
+  dnssec: false
+  caa:
+  - 0 issue "sectigo.com"
+  - 0 issue "ssl.com"
+  - 0 issue "trust-provider.com"
+  - 0 issue "usertrust.com"
+  - 0 issuewild "letsencrypt.org"
+  - 0 issuewild "pki.goog; cansignhttpexchanges=yes"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

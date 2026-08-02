@@ -1,0 +1,79 @@
+# Gravie
+
+> Gravie is a Minneapolis, Minnesota health benefits company (founded 2013) that designs and administers
+> health plans for small and midsize employers. Its flagship Comfort plan is a level-funded group health plan
+> with zero deductibles and zero copays on most common services. Gravie publishes no public developer program
+> or documented API. Its only public machine-readable surface is the set of CMS Transparency in Coverage
+> files it posts on behalf of plan sponsors.
+
+generated: 2026-08-01
+method: generated
+source: apis.yml + API Evangelist enrichment pass (no provider-published llms.txt exists; /llms.txt returns
+404 on www.gravie.com and 403 on api.gravie.com)
+
+## Products
+
+- [Comfort](https://www.gravie.com/comfort/): Level-funded health plan with zero deductibles and zero copays on most common healthcare services.
+- [Gravie ICHRA](https://www.gravie.com/ichra/): Individual Coverage Health Reimbursement Arrangement administration.
+- [Gravie Pay](https://www.gravie.com/gravie-pay/): Financing and management of member out-of-pocket costs.
+- [Gravie Care](https://www.gravie.com/gravie-care/): Member navigation and care support.
+- [Pharmacy](https://www.gravie.com/pharmacy/): Pharmacy benefit.
+
+## Machine-readable data
+
+- [Transparency in Coverage index](https://www.gravie.com/compliance/transparency-in-coverage/): Entry point for all Gravie machine-readable files (45 CFR 147.211).
+- [Cigna in-network rates](https://static.gravie.com/MRFs/CignaMRF.json.gz): Gzipped JSON, CMS price-transparency schema.
+- [Cigna OAP in-network rates](https://static.gravie.com/MRFs/CignaOAPMRF.json.gz): Gzipped JSON, CMS price-transparency schema.
+- [HPS / Paymedix in-network rates](https://static.gravie.com/MRFs/HPSPaymedixMRF.zip): ZIP archive.
+- [Zelis out-of-network allowed amounts](https://static.gravie.com/MRFs/ZelisMRF.csv): CSV.
+- [PreferredOne MRF index](https://www.preferredone.com/mrf/): Covers plans effective 2022-09-01 or earlier.
+
+## Portals
+
+- [Member portal](https://member.gravie.com/login): Member sign-in (single-page application; no public API).
+- [Employer portal](https://employer.gravie.com/): Employer administration.
+- [Provider portal](https://gravie-mesa.javelinaweb.com/): Claim status and payment detail for providers (operated on Javelina).
+- [Find providers](https://www.gravie.com/find-providers/): Network provider directory search.
+- [Provider eligibility](https://www.gravie.com/providers/eligibility/): Eligibility and benefits search tool.
+- [Provider claims](https://www.gravie.com/providers/claims/): Electronic claims submission; payer ID GRV01 (Aetna Signature Administrators) and 62308 (Cigna).
+
+## Compliance and legal
+
+- [Compliance hub](https://www.gravie.com/compliance/)
+- [Privacy policy](https://www.gravie.com/compliance/privacy-policy/)
+- [Terms of use](https://www.gravie.com/compliance/terms-of-use/)
+- [Legal notices](https://www.gravie.com/compliance/legal-notices/)
+- [Licensing](https://www.gravie.com/compliance/gravie-licensing/)
+- [Glossary](https://www.gravie.com/compliance/glossary/)
+- [Language resources](https://www.gravie.com/compliance/language-resources/)
+- [No Surprises Act notice](https://www.gravie.com/compliance/your-rights-and-protections-against-surprise-medical-bills/)
+- [CCPA/CPRA notice](https://www.gravie.com/ccpa-notice/)
+
+## Company
+
+- [Website](https://www.gravie.com/)
+- [Perspectives (blog)](https://www.gravie.com/perspectives/) — RSS at https://www.gravie.com/feed/
+- [News](https://www.gravie.com/news/)
+- [Podcast](https://www.gravie.com/podcast/)
+- [Careers](https://www.gravie.com/careers/)
+- [Contact](https://www.gravie.com/contact/)
+- [GitHub organization](https://github.com/gravieinc) — 7 public repositories, all forks or hiring exercises; no client libraries.
+- [iOS app](https://apps.apple.com/us/app/gravie/id1626358793)
+- [LinkedIn](https://www.linkedin.com/company/gravie/)
+
+## API Evangelist artifacts
+
+- conformance/gravie-conformance.yml — regulatory and technical conformance record.
+- security/gravie-domain-security.yml — TLS/HSTS/DNSSEC/CAA/SPF/DMARC probe.
+- well-known/gravie-well-known.yml — /.well-known/ probe record across five hosts (no documents found).
+
+## Notes for agents
+
+- There is no public Gravie API, SDK, CLI, sandbox, changelog, status page or OpenAPI/AsyncAPI/GraphQL/MCP
+  surface. api.gravie.com is an authenticated gateway backing the Gravie mobile and member apps; it returns
+  HTTP 403 `{"message":"Forbidden"}` for every anonymous path, including /.well-known/*.
+- The portal hosts member.gravie.com and employer.gravie.com are single-page applications whose catch-all
+  route returns HTTP 200 with the app HTML shell for any path. Do not treat a 200 from those hosts as evidence
+  that a document exists.
+- Provider-side integration is EDI, not HTTP: X12 837 claims under payer IDs GRV01 and 62308, submitted
+  through the Smart Data Stream clearinghouse for Aetna Signature Administrators plans.

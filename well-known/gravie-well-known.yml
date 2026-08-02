@@ -1,0 +1,75 @@
+generated: '2026-08-01'
+method: probed
+source: live GET of /.well-known/* on every Gravie host reachable from apis.yml
+result: none
+summary: >-
+  No /.well-known/ discovery document is published on any Gravie host. www.gravie.com (WordPress) and
+  static.gravie.com (CDN origin for the Transparency in Coverage files) return 404 for every path.
+  api.gravie.com is an authenticated gateway that returns 403 {"message":"Forbidden"} for every path
+  including /.well-known/*, so nothing anonymous is discoverable there. member.gravie.com and
+  employer.gravie.com are single-page applications whose catch-all route answers HTTP 200 with the
+  application HTML shell for every /.well-known/* path — these are recorded as false positives, not hits;
+  no path returned parseable JSON or RFC 9116 text.
+hosts:
+- host: www.gravie.com
+  note: WordPress marketing site
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: api.gravie.com
+  note: authenticated API gateway backing the Gravie member apps; every path returns 403 application/json {"message":"Forbidden"}
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/oauth-protected-resource, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}
+  - {path: /.well-known/agent-card.json, status: 403}
+  - {path: /.well-known/agent.json, status: 403}
+- host: static.gravie.com
+  note: CDN origin serving the Transparency in Coverage machine-readable files
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: member.gravie.com
+  note: member portal SPA — catch-all route returns 200 text/html for every path (false positive, rejected)
+  spa_catch_all: true
+  documents:
+  - {path: /.well-known/security.txt, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/openid-configuration, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/oauth-authorization-server, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/oauth-protected-resource, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/api-catalog, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/ai-plugin.json, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/agent-card.json, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/agent.json, status: 200, content_type: text/html, accepted: false}
+- host: employer.gravie.com
+  note: employer portal SPA — catch-all route returns 200 text/html for every path (false positive, rejected)
+  spa_catch_all: true
+  documents:
+  - {path: /.well-known/security.txt, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/openid-configuration, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/oauth-authorization-server, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/oauth-protected-resource, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/api-catalog, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/ai-plugin.json, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/agent-card.json, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/agent.json, status: 200, content_type: text/html, accepted: false}
+x-evidence:
+  fetched: '2026-08-01'
+  hosts_probed: 5
+  paths_per_host: 8
+  documents_found: 0
