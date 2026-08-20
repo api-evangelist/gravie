@@ -26,6 +26,19 @@ tags:
 - Health Insurance
 - Health Benefits
 - Employee Benefits
+- Third-Party Administrator
+- ICHRA
+- Level Funded
+- Transparency In Coverage
+- Machine-Readable Files
+- Healthcare
+- Insurance
+- Regulatory
+tags_raw:
+- Company
+- Health Insurance
+- Health Benefits
+- Employee Benefits
 - Third Party Administrator
 - ICHRA
 - Level Funded
@@ -48,6 +61,12 @@ apis:
   humanURL: https://www.gravie.com/compliance/transparency-in-coverage/
   baseURL: https://static.gravie.com/MRFs/
   tags:
+  - Transparency In Coverage
+  - Machine-Readable Files
+  - Pricing
+  - Regulatory
+  - Health Insurance
+  tags_raw:
   - Transparency In Coverage
   - Machine Readable Files
   - Pricing
