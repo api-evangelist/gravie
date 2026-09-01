@@ -37,11 +37,11 @@ tags:
 - Health Insurance
 - Health Benefits
 - Employee Benefits
-- Third Party Administrator
+- Third-Party Administrator
 - ICHRA
 - Level Funded
 - Transparency In Coverage
-- Machine Readable Files
+- Machine-Readable Files
 - Healthcare
 - Insurance
 - Regulatory
@@ -73,7 +73,7 @@ apis:
   baseURL: https://static.gravie.com/MRFs/
   tags:
   - Transparency In Coverage
-  - Machine Readable Files
+  - Machine-Readable Files
   - Pricing
   - Regulatory
   - Health Insurance
