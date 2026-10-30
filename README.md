@@ -64,36 +64,90 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Gravie is a Minneapolis, Minnesota health benefits company founded in 2013 that designs and administers health
-plans for small and midsize employers — the Comfort level-funded plan (zero deductible, zero copay on most
-common services), Gravie ICHRA administration, Gravie Pay, Gravie Care and a pharmacy benefit. Gravie operates
-as a third-party administrator on top of partner networks (Aetna Signature Administrators, Cigna, Cigna OAP,
-HPS/Paymedix, historically PreferredOne).
+Gravie is a Minneapolis, Minnesota health benefits company founded in 2013 that designs and administers health plans for small and midsize employers. Its flagship product, Comfort, is a level-funded group health plan with zero deductibles and zero copays on most common healthcare services (preventive and primary care, specialist visits, labs and imaging, generic prescriptions and virtual care), paired with Gravie ICHRA (Individual Coverage Health Reimbursement Arrangement) administration, Gravie Pay for out-of-pocket cost financing, Gravie Care member navigation, and a pharmacy benefit. Gravie acts as a third-party administrator on top of partner provider networks (Aetna Signature Administrators, Cigna, Cigna OAP, HPS/Paymedix, and historically PreferredOne), settling claims under payer IDs GRV01 and 62308. Gravie publishes no public developer program or documented API; its machine-readable public surface is the CMS Transparency in Coverage in-network rate and allowed-amount files it posts on behalf of plan sponsors, alongside member, employer and provider portals and native iOS/Android member apps served from a private api.gravie.com backend.
 
-- Website: https://www.gravie.com/
-- GitHub: https://github.com/gravieinc
-- Secondary market listing: https://forgeglobal.com/gravie_stock/
+**Areas:** Company · Health Insurance · Health Benefits · Employee Benefits · Third-Party Administrator · ICHRA · Level Funded · Transparency In Coverage · Machine-Readable Files · Healthcare · Insurance · Regulatory
 
-## API surface
+## Gravie on APIs.io
 
-Gravie publishes **no public developer program, API documentation, OpenAPI/AsyncAPI/GraphQL spec, SDK, CLI,
-sandbox, changelog or status page.** Contract discovery on 2026-08-01 probed `www.gravie.com`,
-`api.gravie.com`, `static.gravie.com`, `member.gravie.com` and `employer.gravie.com` for OpenAPI, Swagger,
-GraphQL, MCP, A2A agent cards and the full `/.well-known/` set — every probe missed. `api.gravie.com` is an
-authenticated gateway backing the Gravie member apps and returns `403 {"message":"Forbidden"}` for every
-anonymous path.
+Everything profiled for Gravie is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/gravie/](https://apis.io/providers/gravie/)** — or go straight to one of the APIs or properties below.
 
-The one real public machine-readable surface is the **CMS Transparency in Coverage** file set Gravie posts on
-behalf of plan sponsors at `static.gravie.com/MRFs/`, indexed at
-https://www.gravie.com/compliance/transparency-in-coverage/. Provider-side integration is EDI rather than
-HTTP: X12 837 claims under payer IDs **GRV01** (Aetna Signature Administrators) and **62308** (Cigna).
+### APIs (1)
 
-## Artifacts
+- [Gravie Transparency in Coverage Machine-Readable Files](https://apis.io/apis/gravie/transparency-in-coverage/) — Public machine-readable files Gravie posts on behalf of its plan sponsors under the CMS Transparency in Coverage rule (45 CFR 147.211). Files cover…
 
-| Path | What it is |
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Gravie Domain Security](https://apis.io/security/gravie/gravie-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.gravie.com/)
+- [Documentation](https://www.gravie.com/compliance/transparency-in-coverage/)
+- [Support](https://www.gravie.com/contact/)
+- [Blog](https://www.gravie.com/perspectives/)
+- [Compliance](https://www.gravie.com/compliance/)
+- [Terms of service](https://www.gravie.com/compliance/terms-of-use/)
+- [Privacy policy](https://www.gravie.com/compliance/privacy-policy/)
+- [GitHub](https://github.com/gravieinc)
+
+## API Evangelist rating
+
+**Kin Score 21.0** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
 |---|---|
-| `apis.yml` | APIs.json index — identity, Transparency in Coverage data surface, link properties |
-| `conformance/gravie-conformance.yml` | Regulatory + technical conformance (TiC, No Surprises Act, HIPAA, SOC 2 Type 1, X12 837, CCPA) |
-| `security/gravie-domain-security.yml` | TLS/HSTS/DNSSEC/CAA/SPF/DMARC probe |
-| `well-known/gravie-well-known.yml` | `/.well-known/` probe record across five hosts (no documents found) |
-| `llms/gravie-llms.txt` | Generated llms.txt for agents |
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 16.7 |
+| Access clarity | 35.5 |
+
+**Agent readiness 0.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.1** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/gravie/](https://apis.io/providers/gravie/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Gravie: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/gravie/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
